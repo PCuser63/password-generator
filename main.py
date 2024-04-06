@@ -52,6 +52,7 @@ def clear():
 var_letters = customtkinter.IntVar()
 var_digits = customtkinter.IntVar()
 var_symbols = customtkinter.IntVar()
+
 def save_to_file():
     file_path = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
     if file_path:
