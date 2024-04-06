@@ -1,4 +1,6 @@
 import customtkinter
+import tkinter
+from tkinter import filedialog
 import random
 import string 
 window = customtkinter.CTk()
@@ -39,6 +41,8 @@ def generate():
             passwords.append(password)
         text_field.delete(0.0, customtkinter.END)  # Очистить текстовое поле
         text_field.insert(0.0, "\n".join(passwords))
+      
+
 
      
     
@@ -48,6 +52,12 @@ def clear():
 var_letters = customtkinter.IntVar()
 var_digits = customtkinter.IntVar()
 var_symbols = customtkinter.IntVar()
+def save_to_file():
+    file_path = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
+    if file_path:
+        with open(file_path, 'a') as file:
+            file.write(text_field.get("1.0", "end"))
+
 
 # создание флажков и меток для выбора типа пароля
 letters_checkbox = customtkinter.CTkCheckBox(window, text="Буквы", variable=var_letters)
@@ -61,7 +71,9 @@ btn_clear = customtkinter.CTkButton(window, text = "Очистить",command = 
 btn_clear.place(x =350, y =100)
 btn_gen = customtkinter.CTkButton(window, text = "Сгенерировать",command=generate)
 btn_gen.place(x =200, y =100)
+btn_save = customtkinter.CTkButton(window, text="Добавить в файл", command=save_to_file)
+btn_save.place(x=200, y=130)
 
 text_field = customtkinter.CTkTextbox(window, width =500, height = 300)
-text_field.place(x = 20, y = 150)
+text_field.place(x = 20, y = 170)
 window.mainloop()
